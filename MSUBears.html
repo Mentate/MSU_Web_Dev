@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+console.log('Iterative Solution');
+//Prints 1-100 replacing numbers with MSU, Bears, or MSUBears depending on their factors
+for (i=1;i<101;i++){
+	var print_code = 0; //using this "print code" removes the need for a third if statement
+	
+	if (i%3==0){
+		print_code+=1;
+	}
+	
+	if (i%5==0){
+		print_code+=2;
+	}
+	
+	switch(print_code){
+	case 1:
+		console.log('MSU');
+		break;
+	case 2:
+		console.log('Bears');
+		break;
+	case 3:
+		console.log('MSUBears');
+		break;
+	default:
+		console.log(i);
+	
+		
+	}
+		
+}
+</script>
+
+<script>
+console.log('\nRecursive Solution');
+//@description: prints 1-100 replacing any numbers divisible by 3 or 5 with MSU or Bears respectivly
+//prints MSUBears if it is divisible by both
+//
+//@params:accepts an int as the current number to process. 
+function Counter(num){
+	var remainder = [(num%3),(num%5)];
+	
+	if((remainder[0])+(remainder[1])==0){
+		console.log('MSUBears');
+	
+	}else if(remainder[0]==0){
+		console.log('MSU');
+	
+	}else if(remainder[1]==0){
+		console.log('Bears');
+		
+	}else {
+		console.log(num);
+	}
+	if (num < 100){
+		Counter(num+1);
+	}
+};
+Counter(1);
+
+
+
+</script>
+
+<script>
+console.log('\nObject Oriented Solution');
+//PrintCount is an object used for printing numbers/strings depending on factors of those numbers
+//
+//@properties: start and stop are the starting and stopping points for the count
+//first and second div are the divisors used to determine if the number will be replaced by a string(if both are factors both strings are appended)
+//first and second str are the strings that will replace numbers that are divisible by first and second div respectivly
+//
+//@methods:print_info uses the properties return an array that contains all of the correct print values. It logs an error and returns 1 if
+//any properties are not set. By creating an object we allow the code to be more scalable and less static.
+function PrintCount(){
+	this.start_val;
+	this.stop_val;
+	this.first_div;
+	this.second_div;
+	this.first_str;
+	this.second_str;
+	this.print_info=function(){
+		//The line below ensures all values have been properly set
+		if(this.start_val == null || this.stop_val==null || this.first_div == null || this.second_div==null || this.first_str == null || this.second_str == null){
+			console.log('Error: Not all values have been set');
+			return 1;
+		}
+		var print_list = [];
+		for(var i=this.start_val;i<=this.stop_val;i++){
+			
+			if((i%(this.first_div)) == 0 && (i%this.second_div) == 0 ){
+				print_list.push(this.first_str + this.second_str);
+			
+			}else if(i%(this.first_div) == 0){
+				print_list.push(this.first_str);
+			
+			}else if( (i%(this.second_div)) == 0){
+				print_list.push(this.second_str);
+				
+			}else{
+				print_list.push(i);
+			}
+		}
+	
+	return print_list;
+
+	}
+	
+}
+//instantiating object and setting properties
+var printer = new PrintCount();
+printer.start_val = 1;
+printer.stop_val = 100;
+printer.first_div = 3;
+printer.second_div=5;
+printer.first_str = 'MSU';
+printer.second_str = 'Bears';
+
+result = printer.print_info();//calling the method to generate print values
+
+for(i=0;i<result.length;i++){//printing those values. 
+	console.log(result[i]);
+}
+
+</script>
+
+<script>
+console.log('Functional Solution');
+
+
+
+</script>
+</body>
+</html>
