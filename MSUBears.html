@@ -86,7 +86,7 @@ function PrintCount(){
 	this.second_div;
 	this.first_str;
 	this.second_str;
-	this.print_info=function(){
+	this.PrintInfo=function(){
 		//The line below ensures all values have been properly set
 		if(this.start_val == null || this.stop_val==null || this.first_div == null || this.second_div==null || this.first_str == null || this.second_str == null){
 			console.log('Error: Not all values have been set');
@@ -109,7 +109,7 @@ function PrintCount(){
 			}
 		}
 	
-	return print_list;
+	return print_list;//returns array with values
 
 	}
 	
@@ -123,19 +123,11 @@ printer.second_div=5;
 printer.first_str = 'MSU';
 printer.second_str = 'Bears';
 
-result = printer.print_info();//calling the method to generate print values
+result = printer.PrintInfo();//calling the method to generate print values
 
 for(i=0;i<result.length;i++){//printing those values. 
 	console.log(result[i]);
 }
 
-</script>
-
-<script>
-console.log('Functional Solution');
-
-
-
-</script>
 </body>
 </html>
